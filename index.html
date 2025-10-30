@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Rafa Mirza Firdaus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(50,50,50,0.9) 100%);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            animation: fadeIn 2s ease-in;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        nav ul li a:hover {
+            color: #f093fb;
+            transform: scale(1.1);
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #667eea, #f093fb);
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            animation: fadeInUp 1.5s ease-out;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #hero {
+            text-align: center;
+            padding-top: 6rem;
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(240,147,251,0.1));
+            border-radius: 10px;
+        }
+        #hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-right: 2px solid #667eea;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #667eea; }
+        }
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 3s ease-in 1s both;
+        }
+        #about h2, #skills h2, #projects h2, #contact h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #000;
+            animation: bounceIn 1s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        #skills ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+        }
+        #skills li {
+            margin: 1rem;
+            padding: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        #skills li:hover {
+            transform: translateY(-10px) scale(1.05);
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .project {
+            display: flex;
+            margin-bottom: 2rem;
+            align-items: center;
+            animation: slideInLeft 1s ease-out;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .project.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .project img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin-right: 2rem;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .project:hover img {
+            transform: scale(1.1);
+        }
+        .project h3 {
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+        .project:hover h3 {
+            color: #667eea;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        form input, form textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        form input:focus, form textarea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102,126,234,0.5);
+        }
+        form button {
+            padding: 0.5rem;
+            background: linear-gradient(45deg, #667eea, #f093fb);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(102,126,234,0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(102,126,234,0); }
+            100% { box-shadow: 0 0 0 0 rgba(102,126,234,0); }
+        }
+        form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(102,126,234,0.8);
+        }
+        footer {
+            background: linear-gradient(90deg, #000 0%, #333 100%);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            animation: fadeIn 2s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Portofolio Rafa Mirza Firdaus</h1>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2>Selamat Datang di Portofolio Saya</h2>
+        <p>Saya adalah programmer pemula dalam pengembangan web dan aplikasi. Mari jelajahi karya saya.</p>
+    </section>
+
+    <section id="about">
+        <h2>Tentang Saya</h2>
+        <p>Saya adalah Rafa Mirza Firdaus, seorang pelajar di Universitas Pendidikan Indonesia dengan jurusan Rekayasa Perangkat Lunak <b><i>Software Enggineering</i></b>. Saya ahli dalam bahasa pemrograman seperti C++, Python, MySQL. serta teknologi web seperti HTML, CSS, dan JavaScript. ada beberapa framework yang saya pelajari seperti Flutter, Tailwind CSS, React, Node JS. Saya berkomitmen untuk menciptakan solusi inovatif dan efisien.</p>
+        <h3>Cita-cita saya</h3>
+        <p>Saya ingin membuat generasi bangsa menjadi lebih cerdas, dengan beberapa projek yang akan saya buat yaitu tentang A.I untuk membantu siswa belajar dalam segi menghafal, jadi AI ini di tugaskan jika suser mengirimkan suatu materi, AI akan membuat beberapa pertanyaan dan siswa menjawab pertanyaan dari AI, AI disini membantu siswa untuk penalaran dan menjelaskan materi tersebut supaya hafalan siswa itu melekat, serta saya ingin memajukan pendidikan bangsa supaya mereka sadar akan betapa pentingnya pendidikan untuk masa depan.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Keterampilan</h2>
+        <ul>
+            <li><i class="fab fa-js-square"></i> JavaScript</li>
+            <li><i class="fab fa-python"></i> Python</li>
+            <li><i class="fab fa-html5"></i> HTML & CSS</li>
+            <li><i class="fab fa-react"></i> React</li>
+            <li><i class="fab fa-node-js"></i> Node.js</li>
+            <li><i class="fas fa-database"></i> Database (SQL/NoSQL)</li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Proyek</h2>
+        <div class="project">
+            <img src="/project1.svg" alt="Proyek 1">
+            <div>
+                <h3>Aplikasi Web E-Commerce</h3>
+                <p>Platform e-commerce yang dibangun dengan React dan Node.js, fitur keranjang belanja dan pembayaran.</p>
+                <a href="project1.html">Lihat Project</a>
+            </div>
+        </div>
+        <div class="project">
+            <img src="/project2.svg" alt="Proyek 2">
+            <div>
+                <h3>Dashboard Analitik Data</h3>
+                <p>Dashboard interaktif menggunakan Python dan D3.js untuk visualisasi data bisnis.</p>
+                <a href="project2.html">Lihat Project</a>
+            </div>
+        </div>
+        <!-- Tambahkan proyek lainnya sesuai kebutuhan -->
+    </section>
+
+    <section id="contact">
+        <h2>Kontak</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Nama" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Pesan" rows="5" required></textarea>
+            <button type="submit">Kirim</button>
+        </form>
+        <p id="statusMessage" style="margin-top: 1rem; color: #fff;"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Rafa Mirza Firdaus. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Animasi scroll-triggered
+        const sections = document.querySelectorAll('section');
+        const projects = document.querySelectorAll('.project');
+
+        function checkVisibility() {
+            const triggerBottom = window.innerHeight / 5 * 4;
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < triggerBottom) {
+                    section.classList.add('visible');
+                }
+            });
+
+            projects.forEach(project => {
+                const projectTop = project.getBoundingClientRect().top;
+                if (projectTop < triggerBottom) {
+                    project.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        checkVisibility(); // Jalankan saat load
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah dikirim.');
+            // Tambahkan logika backend jika diperlukan
+        });
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        // Template parameters untuk EmailJS
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            message: message,
+            to_email: 'rafamirzafirdaus@gmail.com'  // Email tujuan
+        };
+        // Kirim email menggunakan EmailJS
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)  // Ganti dengan Service ID dan Template ID Anda
+            .then(function(response) {
+                document.getElementById('statusMessage').textContent = 'Pesan berhasil dikirim!';
+                document.getElementById('statusMessage').style.color = '#4CAF50';  // Hijau untuk sukses
+                document.getElementById('contactForm').reset();
+            }, function(error) {
+                document.getElementById('statusMessage').textContent = 'Gagal mengirim pesan. Coba lagi.';
+                document.getElementById('statusMessage').style.color = '#f44336';  // Merah untuk error
+                console.error('EmailJS error:', error);
+            });
+    });
+    </script>
+</body>
+</html>
